@@ -41,6 +41,10 @@ type VerifyForm = z.infer<typeof verifySchema>
 export default function VerifyPage() {
   const { toast } = useToast()
   const [submitted, setSubmitted] = useState(false)
+  const [pendingSignup, setPendingSignup] = useState<{
+    affiliateCode?: string
+    affiliateLink?: string | null
+  } | null>(null)
 
   const {
     register,
@@ -53,22 +57,35 @@ export default function VerifyPage() {
   })
 
   const onSubmit = async (data: VerifyForm) => {
-  try {
-    await verify_xm_submission(data)
-    toast({
-      title: 'Verification submitted',
-      description: "We'll confirm your XM partnership and reach you on WhatsApp.",
-    })
-    setSubmitted(true)
-    reset()
-  } catch (err: unknown) {
-    toast({
-      title: 'Submission failed',
-      description: err instanceof Error ? err.message : 'Something went wrong. Please try again.',
-      variant: 'destructive',
-    })
+    try {
+      const result = await verify_xm_submission(data) as Record<string, unknown>
+
+      if (result?.type === 'PENDING_SIGNUP') {
+        setPendingSignup({
+          affiliateCode: typeof result.affiliateCode === 'string' ? result.affiliateCode : undefined,
+          affiliateLink: typeof result.affiliateLink === 'string' ? result.affiliateLink : null,
+        })
+        toast({
+          title: 'Details saved!',
+          description: 'Please open an XM account using our referral code below.',
+        })
+      } else {
+        toast({
+          title: 'Verification submitted!',
+          description: "We'll confirm your XM partnership and reach out on WhatsApp.",
+        })
+      }
+
+      setSubmitted(true)
+      reset()
+    } catch (err: unknown) {
+      toast({
+        title: 'Submission failed',
+        description: err instanceof Error ? err.message : 'Something went wrong. Please try again.',
+        variant: 'destructive',
+      })
+    }
   }
-}
 
 
   return (
@@ -191,10 +208,42 @@ export default function VerifyPage() {
             {isSubmitting ? 'Verifying…' : 'Verify XM ID'}
           </button>
 
-          {submitted && (
+          {submitted && !pendingSignup && (
             <p className="text-center text-xs font-medium text-primary">
               Thanks — we'll confirm your verification shortly.
             </p>
+          )}
+
+          {pendingSignup && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4 rounded-lg border border-primary/30 bg-primary/5 p-5"
+            >
+              <p className="text-sm text-muted-foreground">
+                Your details are saved. To qualify for verification, open a new XM account using
+                our referral code:
+              </p>
+              <div className="flex items-center justify-center rounded-lg border border-primary/20 bg-primary/10 px-6 py-4">
+                <span className="font-mono text-xl font-bold tracking-widest text-primary">
+                  {pendingSignup.affiliateCode ?? 'BANDISHARES05'}
+                </span>
+              </div>
+              {pendingSignup.affiliateLink && (
+                <a
+                  href={pendingSignup.affiliateLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary-glow block w-full text-center text-sm uppercase tracking-wide"
+                >
+                  Open XM Account →
+                </a>
+              )}
+              <p className="text-center text-xs text-muted-foreground">
+                Once your account is active, we'll verify your submission and reach out automatically.
+              </p>
+            </motion.div>
           )}
         </motion.form>
       </div>
