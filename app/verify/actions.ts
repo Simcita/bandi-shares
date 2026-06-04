@@ -38,7 +38,7 @@ export async function verify_xm_submission(form: VerifyForm) {
 
   const backendUrl = process.env.BACKEND_URL ?? 'http://localhost:3000'
 
-  const res = await fetch(`${backendUrl}/verify-xm`, {
+  const res = await fetch(`${backendUrl}/api/verify-xm`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
