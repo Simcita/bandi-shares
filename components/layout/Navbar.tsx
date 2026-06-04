@@ -49,7 +49,7 @@ export default function Navbar() {
             alt="Bandi Shares — Economic Insights"
             width={45}
             height={45}
-            className="logo-glow rounded-full object-cover"
+            className="logo-glow object-cover"
             priority
           />
         </Link>

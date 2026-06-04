@@ -21,9 +21,8 @@ const fadeUp = {
 
 const STATS = [
   { value: '7+',    label: 'Years Trading'     },
-  { value: '2,400+', label: 'Students Mentored' },
-  { value: '89%',   label: 'Win Rate (YTD)'    },
-  { value: '$4.2M+', label: 'Profits Tracked'  },
+  { value: '500+', label: 'Traders Educated' },
+  { value: '$4.2M+', label: 'South African'  },
 ]
 
 const WHY_CARDS = [

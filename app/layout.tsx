@@ -17,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Bandi Shares FX | Institutional Forex Trading Education',
+    default: 'Bandi Shares | MacroEconomics Forex Trading Education',
     template: '%s | Bandi Shares FX',
   },
   description:
@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     'South Africa forex',
     'fundamental analysis',
     'XAU USD gold trading',
+    'Shares Worldwide',
   ],
   authors: [{ name: 'Bandi Shares FX' }],
   openGraph: {
@@ -36,13 +37,13 @@ export const metadata: Metadata = {
     locale: 'en_ZA',
     url: 'https://www.sharesworldwide.trade',
     siteName: 'Bandi Shares FX',
-    title: 'Bandi Shares FX | Institutional Forex Trading Education',
+    title: 'Bandi Shares | MacroEconomics Forex Trading Education',
     description:
       'Macroeconomic Forex education and mentorship. We trade the data, not the noise.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bandi Shares FX | Institutional Forex Trading Education',
+    title: 'Bandi Shares | MacroEconomics Forex Trading Education',
     description:
       'Macroeconomic Forex education and mentorship. We trade the data, not the noise.',
   },

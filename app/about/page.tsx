@@ -54,8 +54,8 @@ const VALUES = [
   },
   {
     icon: BarChart3,
-    title: 'Macro-to-Micro Analysis',
-    desc: 'We start with the macro picture, then zoom into the micro for precision entries. This top-down framework eliminates the guesswork that traps most retail traders.',
+    title: 'Fundamentals First',
+    desc: 'We start with fundamental analysis of central bank policy and global capital flows, then zoom into precision entries. This top-down framework eliminates the guesswork that traps most retail traders.',
   },
   {
     icon: Eye,
@@ -70,10 +70,10 @@ const VALUES = [
 ]
 
 const NUMBERS = [
-  { num: '2019',  label: 'Founded'         },
-  { num: '2,400+', label: 'Traders Educated' },
+  { num: '2025',  label: 'Founded'         },
+  { num: '500+', label: 'Traders Educated' },
   { num: '15+',   label: 'Countries'       },
-  { num: '89%',   label: 'Win Rate YTD'   },
+  { num: '8+',    label: 'Years Trading Experience'        },
 ]
 
 export default function AboutPage() {
@@ -100,8 +100,8 @@ export default function AboutPage() {
           >
             Bandi Shares FX was built on a simple premise: retail traders fail because they ignore
             the economic forces driving price. We bridge the gap by teaching a{' '}
-            <span className="font-medium text-foreground">Macro-to-Micro</span> approach — starting
-            with fundamental analysis of central bank policy and global capital flows, then zooming
+            <span className="font-medium text-foreground">fundamentals-based</span> approach starting
+            with analysis of central bank policy and global capital flows, then zooming
             into precise technical entries grounded in real data.
           </motion.p>
         </div>
@@ -137,7 +137,7 @@ export default function AboutPage() {
             <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
               <p>
                 After years of blowing accounts with retail strategies found on YouTube and forums,
-                our founder made a pivotal shift — studying how the global economy actually drives
+                our founder made a pivotal shift studying how the global economy actually drives
                 price. The turning point came from understanding that{' '}
                 <span className="font-medium text-foreground">
                   fundamental analysis isn't optional, it's the foundation
@@ -148,12 +148,12 @@ export default function AboutPage() {
                 The realization was clear:{' '}
                 <span className="font-medium text-foreground">price follows policy, not patterns.</span>{' '}
                 Markets don't move on support and resistance the way most courses teach. They move on
-                interest rate decisions, inflation prints, and macro data — often weeks before the
+                interest rate decisions, inflation prints, and macro data often weeks before the
                 news cycle catches up.
               </p>
               <p>
                 Bandi Shares was born to teach traders this{' '}
-                <span className="font-medium text-foreground">Macro-to-Micro</span> framework —
+                <span className="font-medium text-foreground">fundamentals based</span> framework
                 starting with interest rate cycles, yield curves, and COT data, then drilling down
                 to precise technical entries. Not with hype or promises, but with data, discipline,
                 and radical transparency.

@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // Turbopack is the default bundler in Next.js 16 — no flag needed.
   // Cache Components (use cache directive) is stable in Next.js 16.
   images: {
@@ -21,4 +20,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+module.exports = nextConfig

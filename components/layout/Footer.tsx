@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 
 const NAV_ITEMS = [
   { label: 'Home',     href: '/'        },
@@ -19,17 +18,17 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-12">
         {/* Logo + socials */}
         <div className="mb-12 flex flex-col items-center">
-          <Image
+          <img
             src="/assets/logo.jpeg"
             alt="Bandi Shares — Economic Insights"
             width={45}
             height={45}
-            className="logo-glow mb-6 rounded-full object-cover"
+            className="logo-glow mb-6 object-cover"
           />
           <div className="flex items-center gap-5">
             {/* TikTok */}
             <a
-              href="https://tiktok.com"
+              href="https://www.tiktok.com/@bandishares"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground transition-colors hover:text-foreground"
@@ -41,7 +40,7 @@ export default function Footer() {
             </a>
             {/* Instagram */}
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/bandishares/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground transition-colors hover:text-foreground"
