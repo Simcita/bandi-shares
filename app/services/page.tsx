@@ -1,73 +1,118 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { BookOpen, LineChart, Zap, BookMarked, Sparkles } from 'lucide-react'
+import { BookOpen, LineChart, Zap, BookMarked, Sparkles, Play, CheckCircle2 } from 'lucide-react'
+import Link from 'next/link'
 import { EXTERNAL_LINKS } from '@/config/links'
+import VideoModal from '@/components/VideoModal'
 
 const SERVICES = [
   {
     icon: BookOpen,
     tag: '6-Month Educational Program',
     title: "The Economist's Playbook: A 6-Month Transformation",
+    sub: 'Move beyond retail strategies. Master the macroeconomic framework used to position ahead of global shifts.',
+    body: "This isn't theory. It's an operational system for reading Yield Curves, Central Bank signals, and Global Risk shifts. By the end, you won't just see a chart — you'll see the policy driving it.",
+    features: [
+      '26 weeks of structured macro curriculum',
+      'Yield Curve & Central Bank signal modules',
+      'Live cohort case studies',
+      'Lifetime access to recordings',
+    ],
     price: 'R6,000.00',
     priceMeta: 'One-time enrolment',
-    desc: 'Master the macroeconomic framework used to position ahead of global shifts.',
-    cta: 'Claim Your Edge',
+    cta: 'Bandi Shares — 6-Month Programme',
     href: EXTERNAL_LINKS.education6Months,
     span: 'md:col-span-2',
     featured: true,
+    videoId: 'dQw4w9WgXcQ' as string | null,
   },
   {
     icon: LineChart,
     tag: 'Trade Discussions',
     title: 'Macro-Driven Alpha',
+    sub: 'Signals rooted in economic reality, not lagging indicators.',
+    body: "We track the pulse of global GDP, CPI, and FOMC so you don't have to. You get the entry, the exit, and most importantly, the Why.",
+    features: [
+      'Macro-anchored trade ideas',
+      'GDP, CPI & FOMC briefings',
+      'Entry, exit & rationale',
+      'Cancel anytime',
+    ],
     price: 'R1,000.00',
     priceMeta: '/ month',
-    desc: "Signals rooted in economic reality. We track GDP, CPI, and FOMC so you don't have to.",
-    cta: 'Enter the War Room',
+    cta: 'Bandi Shares Trade Discussions',
     href: EXTERNAL_LINKS.tradeDiscussions,
     span: 'md:col-span-1',
     featured: false,
+    videoId: 'jNQXAC9IVRw' as string | null,
   },
   {
     icon: Zap,
     tag: '7-Day Bootcamp Recordings',
-    title: 'The Macro Intensive',
+    title: 'The Macro Intensive: 7 Days to Market Mastery',
+    sub: 'A deep-dive for busy traders into the mechanics of price.',
+    body: 'From Liquidity Conditions to Regime Identification, we compress years of macro research into a 7-day blueprint.',
+    features: [
+      '7 full-length intensive sessions',
+      'Liquidity & regime frameworks',
+      'Watch on your own schedule',
+      'Workbook & references included',
+    ],
     price: 'R1,540.00',
     priceMeta: 'One-time access',
-    desc: 'A deep-dive into Regime Identification and liquidity conditions.',
-    cta: 'Claim Your Edge',
+    cta: 'Bandi Shares Bootcamp',
     href: EXTERNAL_LINKS.bootcamp,
     span: 'md:col-span-1',
     featured: false,
+    videoId: '9bZkp7q19f0' as string | null,
   },
   {
     icon: BookMarked,
     tag: 'The Book',
     title: 'The Gospel of Fundamental Analysis',
+    sub: 'The structured guide to reading the economy before the chart reacts.',
+    body: 'Stop chasing shadows. This book is the bridge for traders who have rejected technical dogma and are ready to treat trading like the economic science it actually is.',
+    features: [
+      'Full digital edition',
+      'Lifetime revision updates',
+      'Annotated economic case studies',
+      'Companion glossary',
+    ],
     price: 'R2,500.00',
-    priceMeta: 'Lifetime updates',
-    desc: 'The structured guide to reading the economy before the chart reacts.',
-    cta: 'See the Mechanics',
+    priceMeta: 'Access',
+    cta: 'Bandi Shares Book',
     href: EXTERNAL_LINKS.book,
     span: 'md:col-span-1',
     featured: false,
+    videoId: 'M7lc1UVf-VE' as string | null,
   },
   {
     icon: Sparkles,
     tag: 'The Free Community',
     title: 'The Inner Circle',
+    sub: 'Your first step into the world of professional macro trading.',
+    body: 'Risk less, profit more, and grow with a community of high-conviction traders. Get an exclusive preview of the Bandi Shares framework and start protecting your capital today.',
+    features: [
+      'Open access to community channels',
+      'Weekly macro previews',
+      'Foundational learning resources',
+      'No commitment required',
+    ],
     price: 'Free',
     priceMeta: 'Access',
-    desc: 'Your first step into professional macro trading. Risk less, profit more.',
-    cta: 'Enter the War Room',
+    cta: 'Bandi Shares Community',
     href: EXTERNAL_LINKS.overallBusiness,
     span: 'md:col-span-1',
     featured: false,
+    videoId: 'ScMzIvxBSi4' as string | null,
   },
 ]
 
 export default function ServicesPage() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null)
+
   return (
     <>
       {/* Hero */}
@@ -95,7 +140,7 @@ export default function ServicesPage() {
             transition={{ delay: 0.2 }}
             className="mx-auto max-w-2xl text-lg text-muted-foreground"
           >
-            Built like a research desk. Delivered like a graduate seminar. Priced for the operator.
+            Five tiers. One framework. Choose the depth of access that matches your conviction.
           </motion.p>
         </div>
       </section>
@@ -123,10 +168,20 @@ export default function ServicesPage() {
                 </span>
               </div>
 
-              <h3 className="mb-4 text-balance text-xl font-bold leading-snug text-foreground md:text-2xl">
+              <h3 className="mb-3 text-balance text-xl font-bold leading-snug text-foreground md:text-2xl">
                 {s.title}
               </h3>
-              <p className="mb-6 flex-1 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+              <p className="mb-3 text-sm font-medium leading-relaxed text-foreground/80">{s.sub}</p>
+              <p className="mb-5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+
+              <div className="mb-8 flex-1 space-y-2.5">
+                {s.features.map((f) => (
+                  <div key={f} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-0.5 shrink-0 text-primary" size={14} />
+                    <span className="text-sm text-muted-foreground">{f}</span>
+                  </div>
+                ))}
+              </div>
 
               <div className="mb-6 flex items-baseline gap-2 border-l-2 border-primary pl-3">
                 <span className="font-mono text-2xl font-bold tracking-tight text-foreground md:text-3xl">
@@ -137,22 +192,33 @@ export default function ServicesPage() {
                 </span>
               </div>
 
-              <a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
+              {s.videoId && (
+                <button
+                  onClick={() => setActiveVideo(s.videoId)}
+                  className="mb-3 flex w-full items-center justify-center gap-2 rounded-lg border border-primary/30 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:border-primary/60 hover:bg-primary/5"
+                >
+                  <Play size={13} className="shrink-0" />
+                  Watch Preview
+                </button>
+              )}
+
+              <button
+                onClick={() => window.open(s.href, '_blank', 'noopener,noreferrer')}
+                title={s.cta}
                 className={`w-full rounded-lg py-3 text-center text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 ${
                   s.featured ? 'btn-primary-glow' : 'btn-ghost-glass'
                 }`}
               >
                 {s.cta}
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Closing quote */}
+      <VideoModal videoId={activeVideo} onClose={() => setActiveVideo(null)} />
+
+      {/* Commitment */}
       <section className="section-padding">
         <div className="mx-auto max-w-3xl text-center">
           <motion.div
@@ -161,9 +227,22 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="glass-card p-10"
           >
-            <p className="font-mono text-sm italic leading-relaxed text-muted-foreground">
-              Trading is an economic science. Results require discipline. No magic patterns here,
-              just data.
+            <h3 className="mb-3 text-xl font-bold text-foreground">Our Commitment to You</h3>
+            <p className="mx-auto mb-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              We don't promise overnight riches — we promise a proven framework, relentless support,
+              and a community that holds you to a higher standard. Your success is our reputation.
+            </p>
+            <p className="mx-auto max-w-xl text-xs leading-relaxed text-muted-foreground">
+              All sales of digital products (Book/Course) are final and non-refundable once access is
+              granted. See our{' '}
+              <Link href="/refund-policy" className="text-primary hover:underline">
+                Refund Policy
+              </Link>{' '}
+              and{' '}
+              <Link href="/terms" className="text-primary hover:underline">
+                Terms of Service
+              </Link>{' '}
+              for details.
             </p>
           </motion.div>
         </div>

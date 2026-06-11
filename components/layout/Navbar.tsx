@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { label: 'Home',      href: '/'        },
   { label: 'About',     href: '/about'   },
   { label: 'Services',  href: '/services' },
-  { label: 'Pricing',   href: '/pricing' },
   { label: 'Verify XM', href: '/verify'  },
 ]
 
@@ -71,7 +70,7 @@ export default function Navbar() {
           ))}
           <ThemeToggle />
           <Link
-            href="/pricing"
+            href="/services"
             className="btn-primary-glow shimmer-btn text-xs uppercase tracking-wide"
           >
             Enter the War Room
@@ -115,7 +114,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="/pricing"
+                href="/services"
                 className="btn-primary-glow shimmer-btn mt-2 text-center text-xs uppercase tracking-wide"
               >
                 Enter the War Room
