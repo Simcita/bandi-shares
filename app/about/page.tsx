@@ -1,14 +1,16 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Target, BarChart3, Eye, Zap } from 'lucide-react'
+import { Target, BarChart3, Eye, Zap, Play } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import VideoModal from '@/components/VideoModal'
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 30 },
@@ -76,7 +78,14 @@ const NUMBERS = [
   { num: '8+',    label: 'Years Trading Experience'        },
 ]
 
+const ABOUT_VIDEOS = [
+  { id: 'dQw4w9WgXcQ', label: 'Intro to Macro Trading' },
+  { id: 'jNQXAC9IVRw', label: 'How We Read Markets'   },
+]
+
 export default function AboutPage() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null)
+
   return (
     <>
       {/* Hero */}
@@ -115,6 +124,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col gap-5"
           >
             <div className="glass-card relative aspect-[4/5] overflow-hidden">
               <Image
@@ -124,6 +134,36 @@ export default function AboutPage() {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
+            </div>
+
+            {/* Video thumbnails — click to open modal */}
+            <div className="grid grid-cols-2 gap-3">
+              {ABOUT_VIDEOS.map(({ id, label }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setActiveVideo(id)}
+                  title={label}
+                  className="group overflow-hidden rounded-xl border border-white/10 text-left transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_20px_-5px_hsl(var(--brand-primary)/0.3)]"
+                >
+                  <div className="relative w-full pb-[56.25%]">
+                    <Image
+                      src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`}
+                      alt={label}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 transition-colors duration-300 group-hover:bg-black/30">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/60 transition-transform duration-300 group-hover:scale-110">
+                        <Play size={16} className="translate-x-0.5 text-white" />
+                      </div>
+                    </div>
+                  </div>
+                  <p className="bg-black/40 px-3 py-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                    {label}
+                  </p>
+                </button>
+              ))}
             </div>
           </motion.div>
 
@@ -254,6 +294,8 @@ export default function AboutPage() {
           </Accordion>
         </div>
       </section>
+
+      <VideoModal videoId={activeVideo} onClose={() => setActiveVideo(null)} />
     </>
   )
 }

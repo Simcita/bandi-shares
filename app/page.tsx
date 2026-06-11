@@ -5,10 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Globe2, Shield, Users, ChevronDown } from 'lucide-react'
 import { EXTERNAL_LINKS } from '@/config/links'
-import type { Metadata } from 'next'
-
-// If you need per-page metadata, export it from a server component wrapper.
-// Since this page is 'use client', metadata is set in app/layout.tsx.
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 30 },
@@ -43,14 +39,10 @@ const WHY_CARDS = [
   },
 ]
 
-// Gallery items — place images in public/assets/ and update src paths.
 const GALLERY = [
-  { src: '/assets/bandi-lecture.jpeg',       span: 'col-span-2 row-span-2', label: 'Live Seminar'       },
-  { src: '/assets/gallery-seminar-1.jpg',    span: 'col-span-1 row-span-1', label: 'Audience Engagement' },
-  { src: '/assets/gallery-charts.jpg',       span: 'col-span-1 row-span-1', label: 'Chart Analysis'      },
-  { src: '/assets/bandi-presentation.jpeg',  span: 'col-span-1 row-span-1', label: 'Strategy Breakdown'  },
-  { src: '/assets/gallery-community.jpg',    span: 'col-span-2 row-span-1', label: 'Community Wins'      },
-  { src: '/assets/gallery-mentorship.jpg',   span: 'col-span-1 row-span-1', label: '1-on-1 Mentorship'   },
+  { src: '/assets/bandi-lecture.jpeg',      span: 'col-span-2 row-span-2', label: 'Live Seminar'      },
+  { src: '/assets/bandi-presentation.jpeg', span: 'col-span-1 row-span-1', label: 'Strategy Breakdown' },
+  { src: '/assets/hero-bandi.jpeg',         span: 'col-span-1 row-span-1', label: 'On Stage'           },
 ]
 
 export default function HomePage() {
@@ -102,13 +94,13 @@ export default function HomePage() {
             initial="hidden" animate="visible" variants={fadeUp} custom={3}
             className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <a
-              href={EXTERNAL_LINKS.overallBusiness}
-              target="_blank" rel="noopener noreferrer"
+            <button
+              onClick={() => window.open(EXTERNAL_LINKS.overallBusiness, '_blank', 'noopener,noreferrer')}
+              title="Bandi Shares Community"
               className="btn-primary-glow text-sm uppercase tracking-wide"
             >
-              Claim Your Edge
-            </a>
+              Bandi Shares Community
+            </button>
             <Link href="/about" className="btn-ghost-glass text-sm">
               See the Mechanics
             </Link>
@@ -239,13 +231,13 @@ export default function HomePage() {
                 Stop guessing. Start trading the data. Your journey to consistent profitability
                 begins here.
               </p>
-              <a
-                href={EXTERNAL_LINKS.overallBusiness}
-                target="_blank" rel="noopener noreferrer"
+              <button
+                onClick={() => window.open(EXTERNAL_LINKS.overallBusiness, '_blank', 'noopener,noreferrer')}
+                title="Bandi Shares Community"
                 className="btn-primary-glow animate-pulse-glow text-sm uppercase tracking-wide"
               >
-                Claim Your Edge
-              </a>
+                Bandi Shares Community
+              </button>
             </div>
           </motion.div>
         </div>

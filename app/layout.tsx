@@ -68,26 +68,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
-        {/*
-         * Inline theme script — runs before React hydrates to prevent FOUC.
-         * Reads localStorage and applies the .dark class immediately so the
-         * user never sees a flash of the wrong colour scheme.
-         */}
+        {/* Blocking theme script — prevents flash of wrong colour scheme before hydration */}
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var stored = localStorage.getItem('bandi-theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  var theme = (stored === 'light' || stored === 'dark')
-                    ? stored
-                    : (prefersDark ? 'dark' : 'light');
-                  document.documentElement.classList.toggle('dark', theme === 'dark');
-                  document.documentElement.style.colorScheme = theme;
-                } catch (_) {}
-              })();
-            `,
+            __html: `(function(){try{var s=localStorage.getItem('bandi-theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=(s==='light'||s==='dark')?s:(d?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark');document.documentElement.style.colorScheme=t;}catch(_){}})();`,
           }}
         />
       </head>
